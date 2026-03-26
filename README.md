@@ -22,7 +22,7 @@ npx -y hearts-mcp-server
 ### From source
 
 ```bash
-git clone https://github.com/user/hearts-mcp-server.git
+git clone https://github.com/wj1918/hearts-mcp-server.git
 cd hearts-mcp-server
 npm install
 npm run build
