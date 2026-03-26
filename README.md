@@ -1,6 +1,6 @@
 # Hearts MCP Server
 
-A [Model Context Protocol](https://modelcontextprotocol.io/) server that lets AI agents play the classic card game Hearts against 3 AI opponents.
+A [Model Context Protocol](https://modelcontextprotocol.io/) server that lets you play the classic Hearts game against AI.
 
 ## Features
 
@@ -14,8 +14,6 @@ A [Model Context Protocol](https://modelcontextprotocol.io/) server that lets AI
 ## Installation
 
 ### Via npx (recommended)
-
-No install required — just add the server to your AI agent's MCP config (see [Configuration](#configuration)):
 
 ```
 npx -y hearts-mcp-server
