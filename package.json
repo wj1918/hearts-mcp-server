@@ -1,6 +1,6 @@
 {
   "name": "hearts-mcp-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hearts card game MCP server for agent play",
   "author": "wj1918",
   "license": "MIT",
@@ -8,7 +8,14 @@
     "type": "git",
     "url": "https://github.com/wj1918/hearts-mcp-server.git"
   },
-  "keywords": ["mcp", "hearts", "card-game", "ai", "agent", "model-context-protocol"],
+  "keywords": [
+    "mcp",
+    "hearts",
+    "card-game",
+    "ai",
+    "agent",
+    "model-context-protocol"
+  ],
   "type": "module",
   "main": "dist/index.js",
   "bin": {
