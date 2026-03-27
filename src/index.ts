@@ -22,6 +22,7 @@ const server = new McpServer(
 ## Card Format
 Two input formats: Unicode symbols ("♣2", "♠Q", "♥10") or letter codes ("2C", "QS", "10H"). Case-insensitive.
 Ranks: 2,3,4,5,6,7,8,9,10,J,Q,K,A. Suits: C(Clubs), D(Diamonds), S(Spades), H(Hearts).
+When the user gives just a rank (e.g. "Q", "3", "10"), infer the suit from the current legal plays.
 
 ## Hearts Rules
 - 4 players, 13 cards each. Goal: score the FEWEST points.

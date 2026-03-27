@@ -122,9 +122,11 @@ Three input formats are supported:
 | Unicode symbol + rank | `♠Q`, `♣2`, `♥10`, `♦A` | Symbol prefix |
 | Letter + rank | `SQ`, `C2`, `H10`, `DA` | Letter prefix (case-insensitive) |
 | Rank + letter | `QS`, `2C`, `10H`, `AD` | Letter suffix (case-insensitive) |
+| Rank only | `Q`, `3`, `10` | When suit is unambiguous from legal plays |
 
 - Ranks: 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A
 - Suits: C (Clubs), D (Diamonds), S (Spades), H (Hearts)
+- If only one suit is possible, you can type just the rank (e.g. "Q" instead of "♠Q")
 
 ### Example Turn
 
