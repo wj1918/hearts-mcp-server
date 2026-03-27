@@ -271,10 +271,7 @@ test_gemini() {
 }
 
 # ═══════════════════════════════════════════════════════════════════════
-# CODEX CLI — README: ~/.codex/config.toml
-# [mcp_servers.hearts]
-# command = "npx"
-# args = ["-y", "hearts-mcp-server"]
+# CODEX CLI — codex mcp add hearts -- npx -y hearts-mcp-server
 # ═══════════════════════════════════════════════════════════════════════
 test_codex() {
   echo ""
@@ -290,35 +287,47 @@ test_codex() {
   fi
   echo "Version: $(codex --version 2>&1)"
 
-  # Write exact README config into isolated HOME
-  local codex_config="$FAKE_HOME/.codex/config.toml"
-  mkdir -p "$FAKE_HOME/.codex"
-  cat > "$codex_config" <<'EOF'
-[mcp_servers.hearts]
-command = "npx"
-args = ["-y", "hearts-mcp-server"]
-EOF
+  local name="hearts-config-test"
+  _codex_cleanup() { codex mcp remove "$name" >/dev/null 2>&1 || true; }
+  trap '_codex_cleanup' RETURN
 
-  if grep -q 'hearts-mcp-server' "$codex_config"; then
-    pass "Config written (exact README format)"
+  # Add using exact README command: npx -y hearts-mcp-server
+  local add_out
+  add_out=$(codex mcp add "$name" -- npx -y hearts-mcp-server 2>&1)
+  if echo "$add_out" | grep -qi "added\|success\|$name" || codex mcp list 2>&1 | grep -q "$name"; then
+    pass "Server added (npx -y hearts-mcp-server)"
   else
-    fail "Config write failed"
+    fail "Failed to add server"
+    echo "  $add_out"
     return
   fi
 
-  # Verify TOML matches README
-  if grep -q 'command = "npx"' "$codex_config" && grep -q 'args = \["-y", "hearts-mcp-server"\]' "$codex_config"; then
-    pass "Config matches README exactly"
+  # List
+  local list_out
+  list_out=$(codex mcp list 2>&1)
+  if echo "$list_out" | grep -q "$name"; then
+    pass "Server listed"
   else
-    fail "Config does not match README"
+    fail "Server not in list"
+    echo "  $list_out"
   fi
 
-  # E2E tool call (use FAKE_HOME so codex reads our config)
+  # Get details
+  local get_out
+  get_out=$(codex mcp get "$name" 2>&1)
+  if echo "$get_out" | grep -q "hearts-mcp-server"; then
+    pass "Server config includes 'hearts-mcp-server'"
+  else
+    fail "Server config missing 'hearts-mcp-server'"
+    echo "  $(echo "$get_out" | head -5)"
+  fi
+
+  # E2E tool call
   local e2e_out
-  e2e_out=$(HOME="$FAKE_HOME" codex \
-    -p "Call the create_game tool and return the raw JSON." \
-    --full-auto 2>&1) || true
-  if echo "$e2e_out" | grep -qi "game\|hand\|heart"; then
+  e2e_out=$(codex exec --full-auto \
+    "Call the create_game tool from the $name MCP server and return the raw JSON." \
+    2>&1) || true
+  if echo "$e2e_out" | grep -qi "game\|hand\|heart\|agentSeat\|create_game"; then
     pass "E2E: create_game returned game data"
   else
     fail "E2E: unexpected output"
