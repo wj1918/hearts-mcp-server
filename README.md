@@ -78,12 +78,8 @@ Add to `~/.gemini/settings.json`:
 
 ### Codex CLI
 
-Add to `~/.codex/config.toml`:
-
-```toml
-[mcp_servers.hearts]
-command = "npx"
-args = ["-y", "hearts-mcp-server"]
+```bash
+codex mcp add hearts -- npx -y hearts-mcp-server
 ```
 
 ## Tools
