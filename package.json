@@ -19,7 +19,7 @@
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "mcp-server-hearts": "dist/index.js"
+    "hearts-mcp-server": "dist/index.js"
   },
   "files": [
     "dist",
