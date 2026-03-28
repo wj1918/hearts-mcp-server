@@ -28,7 +28,8 @@ npm install
 npm run build
 ```
 
-Then point your MCP config to `node /path/to/hearts-mcp-server/dist/index.js`.
+Then change your MCP config. 
+for example `claude mcp add hearts -- node ~/prjs/hearts-mcp-server/dist/index.js`.
 
 ## Configuration
 

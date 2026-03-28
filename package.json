@@ -1,6 +1,6 @@
 {
   "name": "hearts-mcp-server",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Hearts card game MCP server for agent play",
   "author": "wj1918",
   "license": "MIT",
