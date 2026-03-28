@@ -13,10 +13,15 @@ A [Model Context Protocol](https://modelcontextprotocol.io/) server that lets yo
 
 ## Installation
 
-### Via npx (recommended)
+### Claude Code
 
-```
-npx -y hearts-mcp-server
+```bash
+# Via npx (recommended)
+claude mcp add hearts -- npx -y hearts-mcp-server
+
+# Or global install
+npm install -g hearts-mcp-server
+claude mcp add hearts -- hearts-mcp-server
 ```
 
 ### From source
@@ -26,61 +31,12 @@ git clone https://github.com/wj1918/hearts-mcp-server.git
 cd hearts-mcp-server
 npm install
 npm run build
+npm link
 ```
 
-Then change your MCP config. 
-for example `claude mcp add hearts -- node ~/prjs/hearts-mcp-server/dist/index.js`.
-
-## Configuration
-
-### Claude Code
-
-Add to `~/.claude/settings.json`:
-
-```json
-{
-  "mcpServers": {
-    "hearts": {
-      "command": "npx",
-      "args": ["-y", "hearts-mcp-server"]
-    }
-  }
-}
-```
-
-Or use a project-level `.mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "hearts": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "hearts-mcp-server"]
-    }
-  }
-}
-```
-
-### Gemini CLI
-
-Add to `~/.gemini/settings.json`:
-
-```json
-{
-  "mcpServers": {
-    "hearts": {
-      "command": "npx",
-      "args": ["-y", "hearts-mcp-server"]
-    }
-  }
-}
-```
-
-### Codex CLI
-
+Then add to your MCP config:
 ```bash
-codex mcp add hearts -- npx -y hearts-mcp-server
+claude mcp add hearts -- hearts-mcp-server
 ```
 
 ## Tools
